@@ -29,8 +29,10 @@ class Searcher
         return $this->table;
     }
 
-    public function filterBy($exp, $value)
+    public function filterBy($exp, $value, $cmp = '=')
     {
+        $cmp = " $cmp ";
+
         // is_object() 判断不可少，不然SAE上会把String也认为Ojbect
         if (is_object($value) && is_a($value, 'BasicModel'))
             $value = $value->id;
@@ -43,11 +45,11 @@ class Searcher
             $ref = $matches[1];
             $refKey = $matches[2];
             $refTable = $relationMap[$ref];
-            $this->conds["$refTable.$refKey=?"] = $value;
-            $this->conds["$this->table.$ref=$refTable.id"] = null;
+            $this->conds["$refTable.$refKey".$cmp.'?'] = $value;
+            $this->conds["$this->table.$ref".$cmp."$refTable.id"] = null;
         } else {
             if (strpos($exp, '?') === false && $value !== null) {
-                $exp = "$this->table.$exp=?";
+                $exp = "$this->table.$exp".$cmp.'?';
             }
             $this->conds[$exp] = $value;
         }

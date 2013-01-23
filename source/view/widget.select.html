@@ -5,7 +5,10 @@
  */
 if (!isset($fieldName))
     $fieldName = 'type';
-$cur_value = i($GLOBALS[$fieldName]);
+if (isset($GLOBALS[$fieldName]))
+    $cur_value = i($GLOBALS[$fieldName]);
+elseif (isset($$fieldName))
+    $cur_value = $$fieldName;
 if (!isset($defaultValue))
     $defaultValue = '';
 if (!isset($defaultText))

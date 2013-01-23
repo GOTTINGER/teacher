@@ -1,0 +1,15 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<form action="/teacher/add" method="post">
+  <label>名字</label>
+  <input type="text" name="name" value="<?= $name ?>">
+  <label>性别</label>
+  <?php widget('select', array('fieldName' => 'gender', 'noDefault' => 1, 'data' => $genders, 'gender' => $gender)); ?>
+  <label>简介</label>
+  <input type="text" name="description" value="<?= $description ?>">
+  <button class="btn">添加老师</button>
+</form>

@@ -1,0 +1,15 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<h3><?= $teacher->name ?></h3>
+<div><?= $teacher->description ?></div>
+<div>评论列表</div>
+<div>撰写评论</div>
+<form action="<?php echo ROOT."comment_teacher/$teacher->id" ?>">
+  <textarea name="content"></textarea>
+  <button>评论</button>
+</form>
+<div>每个人只能写一篇评论。不过，你可以在自己的评论上添加内容。</div>
