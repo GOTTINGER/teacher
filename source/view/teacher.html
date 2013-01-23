@@ -7,8 +7,17 @@
 <h3><?= $teacher->name ?></h3>
 <div><?= $teacher->description ?></div>
 <div>评论列表</div>
+<ul>
+  <?php foreach ($comments as $c): ?>
+    <li>
+      <span><?php echo $c->created ?></span>
+      <strong><?php echo $c->user()->name ?></strong>
+      <div><?php echo $c->content ?></div>
+    </li>
+  <?php endforeach ?>
+</ul>
 <div>撰写评论</div>
-<form action="<?php echo ROOT."comment_teacher/$teacher->id" ?>">
+<form action="<?php echo ROOT."comment_teacher/$teacher->id" ?>" method="post">
   <textarea name="content"></textarea>
   <button>评论</button>
 </form>

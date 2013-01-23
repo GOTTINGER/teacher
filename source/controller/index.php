@@ -8,5 +8,7 @@
 
 function index()
 {
-    render_view('master');
+    $recentCommentedTeachers = Teacher::search()->OrderBy('commented DESC')->find();
+    $recentTeachers = Teacher::search()->orderBy('id DESC')->find();
+    render_view('master', compact('recentTeachers', 'recentCommentedTeachers'));
 }

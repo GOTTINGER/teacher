@@ -13,6 +13,17 @@
 
 <div>搜索课程</div>
 <div>最新被评论的老师</div>
-<div>最新被评论的课程</div>
+<ul>
+  <?php foreach ($recentCommentedTeachers as $t): ?>
+    <li><a href="<?php echo ROOT,"teacher/$t->id" ?>"><?php echo $t->name ?></a></li>
+  <?php endforeach ?>
+</ul>
+
+<div>最新被打分的课程</div>
 <div>最新加入的课程</div>
 <div>最新加入的老师</div>
+<ul>
+  <?php foreach ($recentTeachers as $t): ?>
+    <li><a href="<?php echo ROOT,"teacher/$t->id" ?>"><?php echo $t->name ?></a></li>
+  <?php endforeach ?>
+</ul>

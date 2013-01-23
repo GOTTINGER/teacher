@@ -46,9 +46,14 @@ class BasicModel
 
     public static function notNull($info)
     {
-        return array_filter(array_values($info), function ($e) {
+        $arr = array_filter(array_values($info), function ($e) {
             return ($e !== null && $e !== false);
         });
+        return array_map(function ($e) {
+            if (is_object($e) && is_a($e, 'BasicModel'))
+                return $e->id;
+            return $e;
+        }, $arr);
     }
 
     public function toArray()

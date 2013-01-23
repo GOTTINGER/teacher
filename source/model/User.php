@@ -40,9 +40,6 @@ class User extends BasicModel
     public function login()
     {
         $_SESSION['se_user_id'] = $this->id;
-
-        // log it
-        UserLog::userLogin($this->id);
     }
 
     public function logout()
@@ -80,47 +77,10 @@ class User extends BasicModel
         }
     }
 
-    // only customers can be reistered
-    public static function register($kvs)
+    public static function create($info)
     {
-        extract($kvs);
-        $type = 'customer';
-        Pdb::insert(
-            array(
-                'name' => $username,
-                'password' => md5($password),
-                'type' => $type,
-                'realname' => $realname,
-                'phone' => $phone,
-                'email' => $email,
-                'create_time=NOW()' => null,
-            ),
-            self::$table
-        );
-        return new self(Pdb::lastInsertId());
-    }
-
-    public function loginHistory($conds = array())
-    {
-        $conds = $this->loginConds();
-        $order = 'id desc';
-        $tail = "LIMIT 10";
-        $ret = safe_array_map(function ($info) {
-            $info['ip'] = $info['info'];
-            return $info;
-        }, Pdb::fetchAll('*', UserLog::$table, $conds, $order, $tail));
-        return $ret;
-    }
-
-    public function loginTimes()
-    {
-        return Pdb::count(UserLog::$table, $this->loginConds());
-    }
-
-    private function loginConds()
-    {
-        return array(
-            'subject=?' => $this->id,
-            'action=?' => 'Login');
+        $info['name'] = $info['username'];
+        $info['created=NOW()'] = null;
+        return parent::create($info);
     }
 }

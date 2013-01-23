@@ -22,10 +22,14 @@ define('DEFAULT_LOGIN_REDIRECT_URL', ROOT); // 登录后的默认导向页面
 
 $config['urls'] = array(
     '/' => 'index',
+    '/register' => 'register',
+    '/login' => 'login',
+    '/logout' => 'logout',
     '/search' => 'search',
     '/teacher/add' => 'add_teacher',
     '/teacher/(.+)' => 'teacher',
-    '/teacher/' => 'teachers');
+    '/teacher/' => 'teachers',
+    '/comment_teacher/(.+)' => 'comment_teacher');
 
 // pages need login
 $config['login_page'] = array();

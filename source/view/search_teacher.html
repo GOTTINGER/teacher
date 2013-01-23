@@ -6,22 +6,24 @@
 ?>
 <div><?= $q ?> 搜索结果</div>
 <div>共<?= count($teachers) ?>条搜索结果</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>教师名称</th>
-      <th>简要描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($teachers as $teacher): ?>
+<?php if ($teachers): ?>
+  <table class="table">
+    <thead>
       <tr>
-        <td>
-          <a href="<?= ROOT.'teacher/'.$teacher->id ?>"><?= $teacher->name ?></a>
-        </td>
-        <td><?= $teacher->description ?></td>
+        <th>教师名称</th>
+        <th>简要描述</th>
       </tr>
-    <?php endforeach ?>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <?php foreach ($teachers as $teacher): ?>
+        <tr>
+          <td>
+            <a href="<?= ROOT.'teacher/'.$teacher->id ?>"><?= $teacher->name ?></a>
+          </td>
+          <td><?= $teacher->description ?></td>
+        </tr>
+      <?php endforeach ?>
+    </tbody>
+  </table>
+<?php endif ?>
 <div>没有您想要的结果？<a href="/teacher/add?name=<?= $q ?>">添加老师</a></div>
