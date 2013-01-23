@@ -1,0 +1,22 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<ul class="nav nav-list">
+  <?php foreach ($GLOBALS['nav'] as $url => $sub): ?>
+    
+    <li class="nav-header">
+      <?= $sub['title'] ?>
+    </li>
+    <?php foreach ($GLOBALS['nav'][$url]['sub'] as $arr): ?>
+      <?php 
+      $link = $arr['link'];
+      $href = ROOT.$url.'/'.($link ? $link.'/' : ''); ?>
+      <li class="<?= $GLOBALS['controller'] === get_controller_by_url($href) ? 'active' : '' ?>">
+        <a href="<?= $href ?>"><?= $arr['name'] ?></a>
+      </li>
+    <?php endforeach ?>
+  <?php endforeach ?>
+</ul>

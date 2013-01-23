@@ -1,0 +1,11 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<form action="/search" class="form-search">
+  <input type="hidden" name="type" value="<?= _get('type') ?>">
+  <input type="text" name="q" class="search-query">
+  <button type="submit" class="btn">搜索老师</button>
+</form>

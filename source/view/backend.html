@@ -1,0 +1,83 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+$siteConfig = $GLOBALS['config']['site'];
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><?= $siteConfig['name'] . ' - 后台管理' ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="<?= _css('bootstrap') ?>" rel="stylesheet">
+    <link href="<?= _css('bootstrap-responsive') ?>" rel="stylesheet">
+    <link href="<?= _css('style') ?>" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="masthead">
+      <ul class="nav nav-pills pull-right">
+        <?php if (!$GLOBALS['has_login']): ?>
+          <li><a href="<?= ROOT ?>login">登录</a></li>
+        <?php else: ?>
+          <?php $user = $GLOBALS['user'] ?>
+          <li class="dropdown">
+            <a class="dropdown-toggle"
+               data-toggle="dropdown"
+               href="#">
+                <?= htmlspecialchars($user->name) ?>
+                <b class="caret"></b>
+              </a>
+            <ul class="dropdown-menu">
+              <li><a href="<?= ROOT ?>logout">退出</a></li>
+            </ul>
+          </li>
+        <?php endif ?>
+      </ul>
+      <h3 class="muted"><a href="<?= ROOT ?>"><?= $GLOBALS['config']['site']['name'] ?></a></h3>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid">
+      <div class="span2">
+        <?php render_view('sidebar') ?>
+      </div>
+      <div class="span10"><?php render_view($GLOBALS['view'], $opts); ?></div>
+    </div>
+
+    <hr>
+
+    <div class="footer">
+      <p>&copy; So.Me 2012</p>
+    </div>
+
+    <script src="<?= _js('jquery-1.8.3.min') ?>"></script>
+    <script src="<?= _js('bootstrap') ?>"></script>
+
+    <script src="<?= _js('common') ?>"></script>
+
+    <?php foreach ($GLOBALS['page']['scripts'] as $src): ?>
+      <script type="text/javascript" src="<?= _js($src) ?>"></script>
+    <?php endforeach ?>
+
+    <?php $controller = $GLOBALS['controller']; ?>
+    <?php if (file_exists(AppFile::js($controller))): ?>
+      <script type="text/javascript" src="<?= _js($controller) ?>"></script>
+    <?php endif ?>
+
+  </body>
+</html>

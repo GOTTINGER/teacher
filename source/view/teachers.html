@@ -1,0 +1,24 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<table class="table">
+  <thead>
+    <tr>
+      <th>教师名称</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($teachers as $teacher): ?>
+      <tr>
+        <td>
+          <a href="<?= $teacher->id ?>"><?= $teacher->name ?></a>
+        </td>
+        <td><?= $teacher->no ?></td>
+      </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
