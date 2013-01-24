@@ -28,4 +28,6 @@
     </tbody>
   </table>
 <?php endif ?>
-<div>还没有相应的课程？请 <a href="<?php echo ROOT.'course/add?name='.$q ?>">录入课程</a></div>
+<?php if ($GLOBALS['has_login']): ?>
+  <div>还没有相应的课程？请 <a href="<?php echo ROOT.'course/add?name='.$q ?>">录入课程</a></div>
+<?php endif ?>
