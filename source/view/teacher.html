@@ -16,22 +16,26 @@
     <?php endforeach ?>
   </ul>
   <div><?php echo $teacher->name ?> 老师 还教过别的课程， <a href="<?php echo ROOT."course/add?teacher=$teacher->id" ?>">我来补充</a></div>
-<?php else: ?>
+<?php elseif ($has_login): ?>
   <div>网站还不知道 <?php echo $teacher->name ?> 老师 教过什么课程， <a href="<?php echo ROOT."course/add?teacher=$teacher->id" ?>">我来补充</a></div>
 <?php endif ?>
-<div>对 <?php echo $teacher->name ?> 老师 的评论</div>
-<ul>
-  <?php foreach ($comments as $c): ?>
-    <li>
-      <strong><?php echo $c->user()->name ?></strong>
-      <?php if ($has_login && 0): ?>
-        <span class="btn btn-small vote-btn" data-action="up">顶</span>
-        <span class="btn btn-small vote-btn" data-action="down">踩</span>
-      <?php endif ?>
-      <div><?php echo $c->content ?></div>
-    </li>
-  <?php endforeach ?>
-</ul>
+<?php if ($comments): ?>
+  <div>对 <?php echo $teacher->name ?> 老师 的评论</div>
+  <ul>
+    <?php foreach ($comments as $c): ?>
+      <li>
+        <strong><?php echo $c->user()->name ?></strong>
+        <?php if ($has_login && 0): ?>
+          <span class="btn btn-small vote-btn" data-action="up">顶</span>
+          <span class="btn btn-small vote-btn" data-action="down">踩</span>
+        <?php endif ?>
+        <div><?php echo $c->content ?></div>
+      </li>
+    <?php endforeach ?>
+  </ul>
+<?php else: ?>
+  <div>还没有评论</div>
+<?php endif ?>
 <?php if ($GLOBALS['has_login']): ?>
   <div>撰写评论</div>
   <form action="<?php echo ROOT."comment_teacher/$teacher->id" ?>" method="post">
