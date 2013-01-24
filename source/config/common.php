@@ -10,10 +10,10 @@ define('PRD', 0);
 define('DEBUG', 1);
 
 if (isset($_SERVER['HTTP_APPNAME'])) { // on sae
-    define('ON_SERVER', TRUE);
+    define('ON_SAE', TRUE);
     define('UP_DOMAIN', 'xxx');
 } else {
-    define('ON_SERVER', FALSE);
+    define('ON_SAE', FALSE);
 }
 
 define('ROOT', '/');
@@ -27,6 +27,8 @@ $config['urls'] = array(
     '/logout' => 'logout',
     '/search' => 'search',
     '/teacher/add' => 'add_teacher',
+    '/teacher/(.+)/change_photo' => 'photo',
+    '/teacher/(.+)/edit' => 'edit_teacher',
     '/teacher/(.+)' => 'teacher',
     '/teacher/' => 'teachers',
     '/comment_teacher/(.+)' => 'comment_teacher',
@@ -55,7 +57,7 @@ if (PRD) {
     );
 }
 
-if (ON_SERVER) {
+if (ON_SAE) {
     // 会覆盖之前的配置
     $config['db'] = array(
         'master' => array('host' => SAE_MYSQL_HOST_M),
@@ -67,7 +69,7 @@ if (ON_SERVER) {
     );
 }
 
-if (ON_SERVER || PRD) {
+if (ON_SAE || PRD) {
     include 'server.php';
 } else {
     define('JS_VER',  time());

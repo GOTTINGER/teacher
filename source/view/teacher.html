@@ -5,20 +5,34 @@
  */
 ?>
 <h3><?= $teacher->name ?></h3>
-<div><?= $teacher->description ?></div>
-<div>评论列表</div>
+<div><?= $teacher->description() ?></div>
+<?php if ($courses): ?>
+  <div><?php echo $teacher->name ?> 老师 的课程</div>
+  <ul>
+    <?php foreach ($courses as $c): ?>
+      <li>
+        <a href="<?php echo ROOT."course/$c->id" ?>"><?php echo $c->name ?></a>
+      </li>
+    <?php endforeach ?>
+  </ul>
+  <div><?php echo $teacher->name ?> 老师 还教过别的课程， <a href="<?php echo ROOT."course/add?teacher=$teacher->id" ?>">我来补充</a></div>
+<?php else: ?>
+  <div>网站还不知道 <?php echo $teacher->name ?> 老师 教过什么课程， <a href="<?php echo ROOT."course/add?teacher=$teacher->id" ?>">我来补充</a></div>
+<?php endif ?>
+<div>对 <?php echo $teacher->name ?> 老师 的评论</div>
 <ul>
   <?php foreach ($comments as $c): ?>
     <li>
-      <span><?php echo $c->created ?></span>
       <strong><?php echo $c->user()->name ?></strong>
       <div><?php echo $c->content ?></div>
     </li>
   <?php endforeach ?>
 </ul>
-<div>撰写评论</div>
-<form action="<?php echo ROOT."comment_teacher/$teacher->id" ?>" method="post">
-  <textarea name="content"></textarea>
-  <button>评论</button>
-</form>
-<div>每个人只能写一篇评论。不过，你可以在自己的评论上添加内容。</div>
+<?php if ($GLOBALS['has_login']): ?>
+  <div>撰写评论</div>
+  <form action="<?php echo ROOT."comment_teacher/$teacher->id" ?>" method="post">
+    <textarea name="content"></textarea>
+    <button>评论</button>
+  </form>
+  <div>每个人只能写一篇评论。不过，你可以在自己的评论上<a href="#">添加内容</a>。</div>
+<?php endif ?>

@@ -1,0 +1,12 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<h3><?= $teacher->name ?></h3>
+<div><?= $teacher->description ?></div>
+<form method="post">
+  <textarea name="description" class="span12"><?php echo $teacher->description ?></textarea>
+  <button>ok</button>
+</form>

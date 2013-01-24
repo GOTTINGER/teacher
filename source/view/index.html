@@ -8,14 +8,14 @@
   <div class="span6">
     <form action="/search" class="form-search">
       <input type="hidden" name="type" value="teacher">
-      <input type="text" name="q" class="search-query">
+      <input type="text" name="q" class="search-query" placeholder="输入老师的名字，搜索老师">
       <button type="submit" class="btn">搜索老师</button>
     </form>
   </div>
   <div class="span6">
     <form action="/search" class="form-search">
       <input type="hidden" name="type" value="course">
-      <input type="text" name="q" class="search-query">
+      <input type="text" name="q" class="search-query" placeholder="输入课程的名称，搜索课程">
       <button type="submit" class="btn">搜索课程</button>
     </form>
   </div>
@@ -31,7 +31,7 @@
     </ul>
   </div>
   <div class="span3">
-    <div>最新加入的老师</div>
+    <div>刚刚加入的老师</div>
     <ul>
       <?php foreach ($recentTeachers as $t): ?>
         <li><a href="<?php echo ROOT,"teacher/$t->id" ?>"><?php echo $t->name ?></a></li>
@@ -39,7 +39,7 @@
     </ul>
   </div>
   <div class="span3">
-    <div>最新加入的课程</div>
+    <div>新课程</div>
     <ul>
       <?php foreach ($recentCourses as $c): ?>
         <li>
@@ -49,7 +49,7 @@
     </ul>
   </div>
   <div class="span3">
-    <div>最新被打分的课程</div>
+    <div>刚刚被打分的课程</div>
     <ul>
       <?php foreach ($recentStaredCourses as $c): ?>
         <li>

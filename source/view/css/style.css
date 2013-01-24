@@ -9,3 +9,8 @@ body {
 .modal form {
     margin-bottom: 0;
 }
+
+.teacher-photo img {
+    max-width: 130px;
+    max-height: 173px;
+}

@@ -1,0 +1,12 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<h3><?php echo $teacher->name ?> 的照片</h3>
+<img src="<?php echo $teacher->photo ?>">
+<form action="<?= ROOT."teacher/$teacher->id" ?>/change_photo" method="post" enctype="multipart/form-data" class="form-horizontal">
+  <input type="file" name="photo">
+  <button type="submit" class="btn btn-primary">上传照片</button>
+</form>

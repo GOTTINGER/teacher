@@ -201,7 +201,7 @@ function _make_image($tmp_img, $image_type, $extention, $opt)
 
 /**
  * main function
- * @param type $image like $_FILE['xx']
+ * @param type $image is xx in $_FILES['xx']
  * @param type $opt resize crop width height
  * @return string url of the final img
  * @throws Exception
@@ -216,6 +216,8 @@ function make_image($image, $opt=array()) {
         'height' => 50,
         'list' => null,
     ), $opt);
+
+    $image = $_FILES[$image];
     
     $arr = explode('/', $image['type']);
     $file_type = reset($arr);
