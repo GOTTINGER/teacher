@@ -11,11 +11,17 @@ class Teacher extends BasicModel
         $info['created=NOW()'] = $info['commented=NOW()'] = null;
         return parent::create($info);
     }
+    
     public function comment($content, User $user)
     {
         $info = compact('user', 'content');
         $info['teacher'] = $this;
         Comment::create($info);
         $this->update(array('commented=NOW()' => null));
+    }
+
+    public function value()
+    {
+        return $this->name;
     }
 }

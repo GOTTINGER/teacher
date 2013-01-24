@@ -1,0 +1,10 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<h3><?= $course->name ?></h3>
+<div>授课老师： <a href="<?php echo ROOT.'teacher/'.$teacher->id ?>"><?php echo $teacher->name ?></a></div>
+<div>平均打分： <?php echo $course->star ?></div>
+<div><?= $course->description ?></div>

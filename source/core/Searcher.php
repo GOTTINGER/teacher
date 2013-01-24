@@ -8,6 +8,8 @@
 
 class Searcher
 {
+    const KEY_VALUE_PAIR = 1;
+
     private $table = null;
     private $class = null;
     private $tables = array();
@@ -98,7 +100,7 @@ class Searcher
         return $this;
     }
 
-    public function find()
+    public function find($form = 0)
     {
         $field = "$this->table.id";
         if ($this->distinct)
@@ -126,6 +128,15 @@ class Searcher
         $ret = array_map(function ($id) use($class) {
             return new $class($id);
         }, $ids);
+        if ($form) {
+            if ($form === self::KEY_VALUE_PAIR) {
+                $kvs = array();
+                foreach ($ret as $o) {
+                    $kvs[$o->id] = $o->value();
+                }
+                return $kvs;
+            }
+        }
         return $ret;
     }
 

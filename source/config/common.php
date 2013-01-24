@@ -29,7 +29,9 @@ $config['urls'] = array(
     '/teacher/add' => 'add_teacher',
     '/teacher/(.+)' => 'teacher',
     '/teacher/' => 'teachers',
-    '/comment_teacher/(.+)' => 'comment_teacher');
+    '/comment_teacher/(.+)' => 'comment_teacher',
+    '/course/add' => 'add_course',
+    '/course/(.+)' => 'course');
 
 // pages need login
 $config['login_page'] = array();
