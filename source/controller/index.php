@@ -8,7 +8,11 @@
 
 function index()
 {
-    $recentCommentedTeachers = Teacher::search()->OrderBy('commented DESC')->find();
+    $recentCommentedTeachers = Teacher::search()->orderBy('commented DESC')->find();
     $recentTeachers = Teacher::search()->orderBy('id DESC')->find();
-    render_view('master', compact('recentTeachers', 'recentCommentedTeachers'));
+
+    $recentCourses = Course::search()->orderBy('id DESC')->find();
+    $recentStaredCourses = Course::search()->orderBy('touched DESC')->find();
+
+    render_view('master', compact('recentTeachers', 'recentCommentedTeachers', 'recentCourses', 'recentStaredCourses'));
 }

@@ -8,7 +8,12 @@
 <div>授课老师： <a href="<?php echo ROOT.'teacher/'.$teacher->id ?>"><?php echo $teacher->name ?></a></div>
 <div>平均打分： <?php echo $course->star ?></div>
 <div><?= $course->description ?></div>
-<form action="<?php echo ROOT.'star_course/'.$course->id ?>" method="post">
-  <input type="text" name="star">
-  <button>打分</button>
-</form>
+<?php if ($has_login): ?>
+  <?php if (isset($myStar)): ?>
+    <div>您的打分 <?php echo $myStar ?></div>
+  <?php endif ?>
+  <form action="<?php echo ROOT.'star_course/'.$course->id ?>" method="post">
+    <input type="text" name="star">
+    <button>打分</button>
+  </form>
+<?php endif ?>
