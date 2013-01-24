@@ -24,6 +24,10 @@
   <?php foreach ($comments as $c): ?>
     <li>
       <strong><?php echo $c->user()->name ?></strong>
+      <?php if ($has_login): ?>
+        <span class="btn btn-small vote-btn" data-action="up">顶</span>
+        <span class="btn btn-small vote-btn" data-action="down">踩</span>
+      <?php endif ?>
       <div><?php echo $c->content ?></div>
     </li>
   <?php endforeach ?>
@@ -31,8 +35,8 @@
 <?php if ($GLOBALS['has_login']): ?>
   <div>撰写评论</div>
   <form action="<?php echo ROOT."comment_teacher/$teacher->id" ?>" method="post">
-    <textarea name="content"></textarea>
-    <button>评论</button>
+    <textarea name="content" class="span12"></textarea>
+    <button class="btn">评论</button>
   </form>
   <div>每个人只能写一篇评论。不过，你可以在自己的评论上<a href="#">添加内容</a>。</div>
 <?php endif ?>

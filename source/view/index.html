@@ -22,36 +22,18 @@
 </div>
 
 <div class="row-fluid">
-  <div class="span3">
-    <div>最新被评论的老师</div>
-    <ul>
-      <?php foreach ($recentCommentedTeachers as $t): ?>
-        <li><a href="<?php echo ROOT,"teacher/$t->id" ?>"><?php echo $t->name ?></a></li>
-      <?php endforeach ?>
-    </ul>
-  </div>
-  <div class="span3">
-    <div>刚刚加入的老师</div>
+  <div class="span6">
+    <div>老师列表</div>
     <ul>
       <?php foreach ($recentTeachers as $t): ?>
         <li><a href="<?php echo ROOT,"teacher/$t->id" ?>"><?php echo $t->name ?></a></li>
       <?php endforeach ?>
     </ul>
   </div>
-  <div class="span3">
-    <div>新课程</div>
+  <div class="span6">
+    <div>课程列表</div>
     <ul>
       <?php foreach ($recentCourses as $c): ?>
-        <li>
-          <a href="<?php echo ROOT.'course/'.$c->id ?>"><?php echo $c->name ?></a>
-        </li>
-      <?php endforeach ?>
-    </ul>
-  </div>
-  <div class="span3">
-    <div>刚刚被打分的课程</div>
-    <ul>
-      <?php foreach ($recentStaredCourses as $c): ?>
         <li>
           <a href="<?php echo ROOT.'course/'.$c->id ?>"><?php echo $c->name ?></a>
         </li>

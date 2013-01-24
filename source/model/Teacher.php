@@ -37,7 +37,6 @@ class Teacher extends BasicModel
         foreach ($dangerList as $exp => $replStr) {
             $content = preg_replace('/' . $exp . '/', $replStr, $content);
         }
-        
         return $content;
     }
 }
