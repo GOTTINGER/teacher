@@ -4,7 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-$config['site']['name'] = '大学课程点评网';
+$config['site']['name'] = '矿大课程点评网';
 
 // error info
 $config['error']['info'] = array(

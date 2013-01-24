@@ -24,7 +24,7 @@
   <?php foreach ($comments as $c): ?>
     <li>
       <strong><?php echo $c->user()->name ?></strong>
-      <?php if ($has_login): ?>
+      <?php if ($has_login && 0): ?>
         <span class="btn btn-small vote-btn" data-action="up">顶</span>
         <span class="btn btn-small vote-btn" data-action="down">踩</span>
       <?php endif ?>
