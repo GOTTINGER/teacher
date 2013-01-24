@@ -107,7 +107,7 @@ class BasicModel
         }
         $self = get_called_class();
         Sdb::update($data, $self::table(), $this->selfCond()); // why we need that? that doesn't make any sense
-        $this->info = $this->info(); // refresh data
+        $this->info = null; // next time we will get the new data, if there is next time
     }
 
     public function __get($name) 

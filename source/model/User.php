@@ -6,6 +6,15 @@
 
 class User extends BasicModel
 {
+    public static function create($info)
+    {
+        $info['name'] = $info['username'];
+        $info['password = MD5(?)'] = $info['password'];
+        unset($info['password']);
+        $info['created=NOW()'] = null;
+        return parent::create($info);
+    }
+
     public static function has($username)
     {
         return Pdb::exists(self::$table, array('name=?' => $username));
@@ -13,9 +22,9 @@ class User extends BasicModel
 
     public static function check($username, $password)
     {
-        return Pdb::exists(self::$table, array(
-            'name=?' => $username,
-            'password=?' => md5($password)));
+        $conds = array('username=? AND password=?' => array($username, md5($password)));
+        $info = Sdb::fetchRow('*', self::table(), $conds);
+        return $info ? new self($info) : false;
     }
 
     public function checkPassword($password)
@@ -47,26 +56,6 @@ class User extends BasicModel
         $_SESSION['se_user_id'] = 0;
     }
 
-    public function instance()
-    {
-        switch ($this->type) {
-            case 'SuperAdmin':
-                return new SuperAdmin($this->id);
-                break;
-
-            case 'Admin':
-                return new Admin($this->id);
-                break;
-
-            case 'Customer':
-                return Customer::createFromUser($this);
-                break;
-                
-            default:
-                throw new Exception("unknown user type: $this->type");
-                break;
-        }
-    }
 
     public static function loggingUser()
     {
@@ -77,10 +66,4 @@ class User extends BasicModel
         }
     }
 
-    public static function create($info)
-    {
-        $info['name'] = $info['username'];
-        $info['created=NOW()'] = null;
-        return parent::create($info);
-    }
 }

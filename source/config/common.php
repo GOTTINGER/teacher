@@ -31,7 +31,8 @@ $config['urls'] = array(
     '/teacher/' => 'teachers',
     '/comment_teacher/(.+)' => 'comment_teacher',
     '/course/add' => 'add_course',
-    '/course/(.+)' => 'course');
+    '/course/(.+)' => 'course',
+    '/star_course/(.+)' => 'star_course');
 
 // pages need login
 $config['login_page'] = array();
