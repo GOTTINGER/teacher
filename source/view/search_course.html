@@ -1,0 +1,30 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<div><?= $q ?> 搜索结果</div>
+<div>共<?= count($courses) ?>条搜索结果</div>
+<?php if ($courses): ?>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>课程名称</th>
+        <th>教师名称</th>
+        <th>简要描述</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($courses as $c): ?>
+        <tr>
+          <td>
+            <a href="<?php echo ROOT."course/$c->id" ?>"><?php echo $c->name ?></a>
+          </td>
+          <td><?= $c->teacher()->name ?></td>
+          <td><?= $c->description ?></td>
+        </tr>
+      <?php endforeach ?>
+    </tbody>
+  </table>
+<?php endif ?>

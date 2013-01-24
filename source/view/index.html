@@ -12,6 +12,12 @@
 </form>
 
 <div>搜索课程</div>
+<form action="/search" class="form-search">
+  <input type="hidden" name="type" value="course">
+  <input type="text" name="q" class="search-query">
+  <button type="submit" class="btn">搜索课程</button>
+</form>
+
 <div>最新被评论的老师</div>
 <ul>
   <?php foreach ($recentCommentedTeachers as $t): ?>

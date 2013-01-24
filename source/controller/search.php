@@ -22,3 +22,9 @@ function search_teacher($q)
     $teachers = Teacher::search()->filterBy('name', "%$q%", 'LIKE')->find();
     render_view('master', compact('teachers', 'q'));
 }
+
+function search_course($q)
+{
+    $courses = Course::search()->filterBy('name', "%$q%", 'LIKE')->find();
+    render_view('master', compact('courses', 'q'));
+}
