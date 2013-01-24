@@ -8,7 +8,7 @@ class Course extends BasicModel
 {
     public static function create($info)
     {
-        $info['created=NOW()'] = $info['touched'] = null;
+        $info['created=NOW()'] = $info['touched=NOW()'] = null;
         return parent::create($info);
     }
 
