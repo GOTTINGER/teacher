@@ -4,16 +4,17 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-function comment_teacher_POST($id)
+function comment($type, $id)
 {
-    $content = _post('content');
     if (!$GLOBALS['has_login'])
         return;
     
+    $content = _post('content');
     if ($content) {
         $user = $GLOBALS['user'];
-        $teacher = new Teacher($id);
-        $teacher->comment($content, $user);
+        $o = new $type($id);
+        $o->comment($content, $user);
     }
-    redirect("teacher/$id");
+    $t = camel2under($type);
+    redirect("$t/$id");
 }

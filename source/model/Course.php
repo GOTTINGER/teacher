@@ -4,14 +4,8 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-class Course extends BasicModel
+class Course extends Model
 {
-    public static function create($info)
-    {
-        $info['created=NOW()'] = $info['touched=NOW()'] = null;
-        return parent::create($info);
-    }
-
     public function star($star, User $user)
     {
         $info = compact('user', 'star');
@@ -26,17 +20,10 @@ class Course extends BasicModel
         return $this->star;
     }
 
-    public function isStaredBy(User $user)
-    {
-        $conds = array('user=? AND course=?' => array($user->id, $this->id));
-        $info = Sdb::fetchRow('*', CourseStar::table(), $conds);
-        return $info ? true : false;
-    }
-
     public function starBy(User $user)
     {
         $conds = array('user=? AND course=?' => array($user->id, $this->id));
         $info = Sdb::fetchRow('*', CourseStar::table(), $conds);
-        return $info['star'];
+        return $info ? $info['star'] : false;
     }
 }

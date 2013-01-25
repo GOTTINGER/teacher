@@ -17,3 +17,17 @@
     <button>打分</button>
   </form>
 <?php endif ?>
+<ul>
+  <?php foreach ($comments as $c): ?>
+    <li>
+      <strong><?php echo $c->user()->name ?></strong>
+      <div><?php echo $c->content ?></div>
+    </li>
+  <?php endforeach ?>
+</ul>
+<?php if ($has_login): ?>
+  <form action="<?php echo ROOT.'comment/Course/'.$course->id ?>" method="post">
+    <textarea name="content"></textarea>
+    <button>评价</button>
+  </form>
+<?php endif ?>
