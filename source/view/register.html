@@ -7,15 +7,33 @@
 <form action="<?= ROOT ?>register" method="post" class="form-horizontal">
   <input type="hidden" name="back" value="<?= _req('back') ?>">
   <div class="control-group">
-    <label class="control-label" for="inputEmail">用户名：</label>
+    <label class="control-label" for="inputEmail">用户名</label>
     <div class="controls">
-      <input type="text" name="username" id="inputEmail" placeholder="" value="<?= $username ?>" class="required">
+      <input type="text" name="username" id="inputEmail" placeholder="" value="" class="required">
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="inputPassword">密码：</label>
+    <label class="control-label" for="inputPassword">密码</label>
     <div class="controls">
       <input type="text" name="password" id="inputPassword" placeholder="" class="required">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">性别</label>
+    <div class="controls">
+      <?php widget('select', array('fieldName' => 'gender', 'data' => $genders, 'noDefault' => 1)) ?>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">学院</label>
+    <div class="controls">
+      <?php widget('select', array('fieldName' => 'school', 'data' => $schools, 'noDefault' => 1)) ?>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">入学年份</label>
+    <div class="controls">
+      <input type="text" name="year" id="inputPassword" placeholder="" class="required">
     </div>
   </div>
   <div class="control-group ">

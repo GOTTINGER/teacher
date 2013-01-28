@@ -9,7 +9,6 @@
 function index()
 {
     $recentTeachers = Teacher::search()->orderBy('touched DESC')->find();
-    $recentCourses = Course::search()->orderBy('touched DESC')->find();
 
     render_view('master', compact('recentTeachers', 'recentCourses'));
 }

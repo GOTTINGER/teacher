@@ -1,0 +1,28 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<div>返回<a href="<?php echo ROOT."teacher/$teacher->id" ?>"><?php echo $teacher->name ?></a></div>
+<h3><?php echo $comment->title ?></h3>
+<strong><?php echo $comment->user()->name ?></strong>
+<span><?php echo $comment->created ?></span>
+<div><?php echo $comment->content ?></div>
+<?php if ($has_login): ?>
+  <span class="btn btn-small vote-btn" data-action="like" data-target="<?php echo $comment->id ?>">喜欢</span>
+  <span class="btn btn-small vote-btn" data-action="hate" data-target="<?php echo $comment->id ?>">不喜欢</span>
+<?php endif ?>
+<?php foreach ($discusses as $d): ?>
+  <li>
+    <?php $u = $d->user(); ?>
+    <a href="<?php echo ROOT."user/$u->id" ?>"><?php echo $u->name ?></a>
+    <div><?php echo $d->content ?></div>
+  </li>
+<?php endforeach ?>
+<?php if ($has_login): ?>
+  <form action="<?php echo ROOT."comment/$comment->id/discuss" ?>" method="post">
+    <textarea name="content"></textarea>
+    <button>评论</button>
+  </form>
+<?php endif ?>

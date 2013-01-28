@@ -29,12 +29,14 @@ $config['urls'] = array(
     '/teacher/add' => 'add_teacher',
     '/teacher/(.+)/change_photo' => 'photo',
     '/teacher/(.+)/edit' => 'edit_teacher',
+    '/teacher/(.+)/comment/(.+)' => 'comment',
     '/teacher/(.+)' => 'teacher',
     '/teacher/' => 'teachers',
-    '/comment/(.+)/(.+)' => 'comment',
+    '/comment/(.+)/discuss' => 'discuss_comment',
+    '/comment/(.+)/(.+)' => 'comment_action',
     '/course/add' => 'add_course',
     '/course/(.+)' => 'course',
-    '/star_course/(.+)' => 'star_course');
+    '/attitude/(.+)' => 'attitude');
 
 // pages need login
 $config['login_page'] = array();

@@ -12,10 +12,10 @@ class Model extends BasicModel
         return parent::create($info);
     }
     
-    public function comment($content, User $user)
+    public function comment($title, $content, User $user)
     {
         $key = camel2under(get_called_class());
-        $info = compact('user', 'content');
+        $info = compact('user', 'title', 'content');
         $info[$key] = $this;
         Comment::create($info);
         $this->update(array('touched=NOW()' => null));

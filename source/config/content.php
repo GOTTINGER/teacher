@@ -4,7 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-$config['site']['name'] = '矿大课程点评网';
+$config['site']['name'] = '矿大老师点评网';
 
 // error info
 $config['error']['info'] = array(
@@ -23,6 +23,10 @@ $config['error']['info'] = array(
 $config['gender'] = array(
     'male' => '男',
     'female' => '女');
+
+$config['school'] = array(
+    '艺术学院',
+    '文法学院');
 
 // 普通用户的导航
 $config['navs']['user'] = '
