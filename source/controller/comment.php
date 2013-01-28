@@ -11,6 +11,11 @@ function comment($teacher, $comment)
     $discusses = $comment->discusses();
 
     $has_login = $GLOBALS['has_login'];
+    if ($has_login) {
+    	$u = $GLOBALS['user'];
+    	$comment->likedByMe = $comment->attitudeByUser('like', $u);
+    	$comment->hatedByMe = $comment->attitudeByUser('hate', $u);
+    }
 
     render_view('master', compact('teacher', 'comment', 'has_login', 'discusses'));
 }

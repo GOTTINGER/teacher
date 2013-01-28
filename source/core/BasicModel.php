@@ -50,9 +50,7 @@ class BasicModel
             return ($e !== null && $e !== false);
         });
         return array_map(function ($e) {
-            if (is_object($e) && is_a($e, 'BasicModel'))
-                return $e->id;
-            return $e;
+            return (is_object($e) && is_a($e, 'BasicModel')) ? $e->id : $e;
         }, $arr);
     }
 

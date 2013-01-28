@@ -108,8 +108,8 @@ class Searcher
         $limitStr = $this->limit ? "LIMIT $this->limit" : '';
         $tail = "$limitStr OFFSET $this->offset";
         if ($this->conds) {
-            $condStr = implode('AND', array_keys($this->conds));
-            $a = array_filter(array_values($this->conds));
+            $condStr = implode(' AND ', array_keys($this->conds));
+            $a = array_filter(array_values($this->conds), function ($v) {return $v!==false && $v!==null;});
             $values = array();
             foreach ($a as $v) {
                 if (is_array($v)) {
@@ -138,6 +138,31 @@ class Searcher
             }
         }
         return $ret;
+    }
+
+    public function count()
+    {
+        $field = count($this->tables) > 1 ? "$this->table.id" : '*';
+        if ($this->distinct)
+            $field = "DISTINCT($field)";
+        $field = "count($field)";
+        if ($this->conds) {
+            $condStr = implode(' AND ', array_keys($this->conds));
+            $a = array_filter(array_values($this->conds), function ($v) {return $v!==false && $v!==null;});
+            $values = array();
+            foreach ($a as $v) {
+                if (is_array($v)) {
+                    $values += $v;
+                } else {
+                    $values[] = $v;
+                }
+            }
+            $conds = array($condStr => $values);
+        } else {
+            $conds = '';
+        }
+        $arr = Sdb::fetch($field, $this->tables, $conds);
+        return $arr[0];
     }
 
     // ------------ private section -----------------
