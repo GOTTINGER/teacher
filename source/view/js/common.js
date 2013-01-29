@@ -1,9 +1,17 @@
 $(function () {
-    $('.post-action-btn').click(function () {
+    $('.vote-btn').click(function () {
+    	var that = $(this);
         var action = $(this).data('action');
-        var backurl = $(this).data('backurl');
-        $.post(action, {}, function (ret) {
-            window.location.href = backurl;
+        var target = $(this).data('target');
+        var type = $(this).data('type');
+        $.get('/attitude/'+type, {action:action, target:target}, function (ret) {
+        	$('.'+action+'-count').text(ret);
+            if (that.hasClass('btn-inverse')) {
+                $('.vote-btn').removeClass('btn-inverse');
+            } else {
+            	$('.vote-btn').removeClass('btn-inverse');
+            	$('.'+action+'-btn').addClass('btn-inverse');
+            }
         });
     });
 });

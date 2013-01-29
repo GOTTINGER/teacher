@@ -5,6 +5,7 @@
  */
 ?>
 <h3><?= $teacher->name ?></h3>
+<span><?php echo $schools[$teacher->school] ?></span>
 <div><?= $teacher->description() ?></div>
 <?php if ($comments): ?>
   <div>对 <?php echo $teacher->name ?> 老师 的评论</div>

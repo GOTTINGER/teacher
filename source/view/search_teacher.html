@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th>教师名称</th>
+        <th>所在学院</th>
         <th>简要描述</th>
       </tr>
     </thead>
@@ -19,6 +20,9 @@
         <tr>
           <td>
             <a href="<?= ROOT.'teacher/'.$teacher->id ?>"><?= $teacher->name ?></a>
+          </td>
+          <td>
+            <a href="<?php echo ROOT,"search?school=$teacher->school" ?>"><?php echo $teacher->school() ?></a>
           </td>
           <td><?= $teacher->description ?></td>
         </tr>

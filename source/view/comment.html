@@ -10,9 +10,19 @@
 <span><?php echo $comment->created ?></span>
 <div><?php echo $comment->content ?></div>
 <?php if ($has_login): ?>
-  <span class="btn btn-small vote-btn like-btn <?php echo $comment->likedByMe ? 'btn-inverse' : '' ?>" data-action="like" data-target="<?php echo $comment->id ?>">喜欢</span>
+  <span 
+    class="btn btn-small vote-btn like-btn <?php echo $comment->likedByMe ? 'btn-inverse' : '' ?>" 
+    title="<?php echo $comment->likedByMe ? '不再喜欢这个评论' : '喜欢这个评论' ?>"
+    data-type="comment" 
+    data-action="like" 
+    data-target="<?php echo $comment->id ?>">喜欢</span>
   <span class="like-count"><?php echo $comment->likeCount() ?></span>
-  <span class="btn btn-small vote-btn hate-btn <?php echo $comment->hatedByMe ? 'btn-inverse' : '' ?>" data-action="hate" data-target="<?php echo $comment->id ?>">不喜欢</span>
+  <span 
+    class="btn btn-small vote-btn hate-btn <?php echo $comment->hatedByMe ? 'btn-inverse' : '' ?>" 
+    title="<?php echo $comment->hatedByMe ? '不再讨厌这个评论' : '讨厌这个评论' ?>"
+    data-type="comment" 
+    data-action="hate" 
+    data-target="<?php echo $comment->id ?>">不喜欢</span>
   <span class="hate-count"><?php echo $comment->hateCount() ?></span>
 <?php endif ?>
 <?php foreach ($discusses as $d): ?>

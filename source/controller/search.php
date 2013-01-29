@@ -6,10 +6,8 @@
 
 function search()
 {
-    $type = _get('type');
+    $type = _get('type') ?: 'teacher';
     $q = _get('q');
-    if (!$q || !$type)
-        return;
     $func = 'search_'.$type;
     if (function_exists($func)) {
         $GLOBALS['view'] = $func;
@@ -19,7 +17,13 @@ function search()
 
 function search_teacher($q)
 {
-    $teachers = Teacher::search()->filterBy('name', "%$q%", 'LIKE')->find();
+    $s = Teacher::search();
+    if ($q)
+        $s = $s->filterBy('name', "%$q%", 'LIKE');
+    $school = _get('school');
+    if ($school !== '')
+        $s = $s->filterBy('school', $school);
+    $teachers = $s->find();
     render_view('master', compact('teachers', 'q'));
 }
 

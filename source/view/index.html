@@ -19,7 +19,10 @@
     <div>老师列表</div>
     <ul>
       <?php foreach ($recentTeachers as $t): ?>
-        <li><a href="<?php echo ROOT,"teacher/$t->id" ?>"><?php echo $t->name ?></a></li>
+        <li>
+          <a href="<?php echo ROOT,"teacher/$t->id" ?>"><?php echo $t->name ?></a>
+          <a href="<?php echo ROOT,"search?school=$t->school" ?>"><?php echo $t->school() ?></a>
+        </li>
       <?php endforeach ?>
     </ul>
   </div>
