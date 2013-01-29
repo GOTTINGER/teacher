@@ -36,7 +36,8 @@ $config['urls'] = array(
     '/comment/(.+)/(.+)' => 'comment_action',
     '/course/add' => 'add_course',
     '/course/(.+)' => 'course',
-    '/attitude/(.+)' => 'attitude');
+    '/attitude/(.+)' => 'attitude',
+    '/my' => 'my');
 
 // pages need login
 $config['login_page'] = array();
