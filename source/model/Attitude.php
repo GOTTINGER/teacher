@@ -19,7 +19,7 @@ class Attitude extends BasicModel
 			$a = $as[0];
 			if ($a->like == $info['`like`']) {
 				$a->del();
-				return false;
+				return false; // cancel
 			} else {
 				$a->update('`like`', !$a->like);
 				return $a;

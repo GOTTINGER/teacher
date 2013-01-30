@@ -9,7 +9,8 @@
 function index()
 {
     $recentTeachers = Teacher::search()->orderBy('touched DESC')->find();
-    $data = compact('recentTeachers', 'recentCourses');
+    $recentComments = Comment::search()->OrderBy('id DESC')->find();
+    $data = compact('recentTeachers', 'recentCourses', 'recentComments');
     if ($GLOBALS['has_login']) {
 	    $timelines = Timeline::search()->filterBy('user', $GLOBALS['user'])->find();
 	    $data['timelines'] = $timelines;
