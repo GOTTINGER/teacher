@@ -1,0 +1,18 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<div><strong><?php echo $user->name ?></strong>的评论</div>
+<ul>
+  <?php foreach ($comments as $c): ?>
+    <li>
+      <?php $teacher = $c->teacher(); ?>
+      <a href="<?php echo ROOT,'teacher/',$teacher->id,'/comment/',$c->id ?>"><?php echo $c->title ?></a>
+      <span>（评论</span>
+      <a href="<?php echo ROOT,'teacher/',$teacher->id ?>"><?php echo $teacher->name ?></a>
+      <span>老师）</span>
+    </li>
+  <?php endforeach ?>
+</ul>
