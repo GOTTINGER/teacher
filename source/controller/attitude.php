@@ -16,6 +16,17 @@ function attitude($type)
     $info = array($type => $target, 'user' => $GLOBALS['user'], '`like`' => $map[$action]);
     Attitude::create($info);
 
+    $info = array(
+        'user' => $GLOBALS['user'],
+        'action' => $action,
+        'object' => $target);
+    $act = Activity::create($info);
+
+    // inform author
+    $comment = new $class($target);
+    $info = array('user' => $comment->user, 'activity' => $act);
+    Timeline::create($info);
+
 	$o = new $class($target);
 	echo $o->{$action.'Count'}();
 }

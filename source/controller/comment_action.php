@@ -16,6 +16,7 @@ function comment_action($type, $id)
         $o = new $type($id);
         $o->comment($title, $content, $user);
     }
+
     $t = camel2under($type);
     redirect("$t/$id");
 }

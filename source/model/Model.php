@@ -17,8 +17,9 @@ class Model extends BasicModel
         $key = camel2under(get_called_class());
         $info = compact('user', 'title', 'content');
         $info[$key] = $this;
-        Comment::create($info);
+        $c = Comment::create($info);
         $this->update(array('touched=NOW()' => null));
+        return $c;
     }
 
     public function comments()

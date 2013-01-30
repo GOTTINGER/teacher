@@ -32,7 +32,19 @@ class Comment extends BasicModel
     {
     	$info = compact('content', 'user');
     	$info['comment'] = $this;
-    	Discuss::create($info);
+    	$d = Discuss::create($info);
+
+        // generate activity
+        $info = array(
+            'user' => $user,
+            'action' => 'discuss',
+            'object' => $this,
+            'link' => $d);
+        $act = Activity::create($info);
+
+        // inform all stack holders
+        $info = array('activity' => $act, 'user' => $this->user);
+        Timeline::create($info);
     }
 
     public function discusses()
