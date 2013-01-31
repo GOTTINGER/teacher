@@ -1,0 +1,15 @@
+<?php
+!defined('IN_APP') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<span>对 <a href="<?php echo ROOT,'teacher/',$teacher->id ?>"><?php echo $teacher->name ?></a>的评论</span>
+<h3><?php echo $comment->title ?></h3>
+<strong><?php echo $comment->user()->name ?></strong>
+<span><?php echo $comment->created ?></span>
+<div><?php echo $comment->content ?></div>
+<form action="<?php echo ROOT,'teacher/',$teacher->id,"/comment/$comment->id/add" ?>" method="post">
+  <textarea name="content"></textarea>
+  <button>添加评论</button>
+</form>

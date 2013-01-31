@@ -29,6 +29,7 @@ $config['urls'] = array(
     '/teacher/add' => 'add_teacher',
     '/teacher/(.+)/change_photo' => 'photo',
     '/teacher/(.+)/edit' => 'edit_teacher',
+    '/teacher/(.+)/comment/(.+)/add' => 'comment_add',
     '/teacher/(.+)/comment/(.+)' => 'comment',
     '/teacher/(.+)' => 'teacher',
     '/teacher/' => 'teachers',

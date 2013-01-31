@@ -20,12 +20,15 @@
 <?php else: ?>
   <div>还没有评论</div>
 <?php endif ?>
-<?php if ($GLOBALS['has_login']): ?>
-  <div>撰写评论</div>
-  <form action="<?php echo ROOT."comment/Teacher/$teacher->id" ?>" method="post">
-    <input type="text" name="title" placeholder="这篇评论的标题">
-    <textarea name="content" class="span12"></textarea>
-    <button class="btn">评论</button>
-  </form>
-  <div>每个人只能写一篇评论。不过，你可以在自己的评论上<a href="#">添加内容</a>。</div>
+<?php if ($has_login): ?>
+  <?php if ($myComment = $teacher->commentedByMe): ?>
+    <div>每个人只能写一篇评论。不过，你可以在自己的评论上<a href="<?php echo $teacher->id,'/comment/',$myComment->id,'/add' ?>">添加内容</a>。</div>
+  <?php else: ?>
+    <div>撰写评论</div>
+    <form action="<?php echo ROOT."comment/Teacher/$teacher->id" ?>" method="post">
+      <input type="text" name="title" placeholder="这篇评论的标题">
+      <textarea name="content" class="span12"></textarea>
+      <button class="btn">评论</button>
+    </form>
+  <?php endif ?>
 <?php endif ?>

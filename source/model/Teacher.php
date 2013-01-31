@@ -31,4 +31,11 @@ class Teacher extends Model
 			Timeline::create($info);
 		}
 	}
+
+	public function commentedByUser(User $user)
+	{
+		$conds = array('user=? AND teacher=?' => array($user->id, $this->id));
+		$id = Sdb::fetchRow('id', Comment::table(), $conds);
+		return $id ? new Comment($id) : false;
+	}
 }

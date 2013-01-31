@@ -12,6 +12,38 @@ class Comment extends BasicModel
         return parent::create($info);
     }
 
+    public function addContent($content)
+    {
+        $info = compact('content');
+        $info['comment'] = $this;
+        Addition::create($info);
+
+        // generate activity
+        $info = array(
+            'user' => $this->user,
+            'action' => 'add',
+            'object' => $this,
+            'link' => $this);
+        $act = Activity::create($info);
+
+        // inform all stack holders
+        $conds = array('comment=?' => array($this->id));
+        $users = Sdb::fetch('DISTINCT(user)', Discuss::table(), $conds);
+        $info = array('activity' => $act);
+        foreach ($users as $u) {
+            if ($u == $this->user) {
+                break; // 不需要通知本人
+            }
+            $info['user'] = $u;
+            Timeline::create($info);
+        }
+    }
+
+    public function additions()
+    {
+        return Addition::search()->filterBy('comment', $this)->find();
+    }
+
     public function likeCount()
     {
         return Attitude::search()->filterBy('comment', $this)->filterBy('like', 1)->count();
